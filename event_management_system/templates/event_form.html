@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% block title %}{% if mode == 'edit' %}Edit Event{% else %}Create Event{% endif %} - EventHub{% endblock %}
+
+{% block content %}
+<div class="container py-4" data-mode="{{ mode }}" data-event-id="{{ event_id or '' }}">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card form-section-card p-4">
+                <h3 class="mb-4">
+                    <i class="bi bi-calendar-plus"></i>
+                    {% if mode == 'edit' %}Edit Event{% else %}Create New Event{% endif %}
+                </h3>
+
+                <div id="formAlert" class="alert alert-danger d-none"></div>
+
+                <form id="eventForm" novalidate>
+                    <div class="mb-3">
+                        <label class="form-label" for="title">Event Title *</label>
+                        <input type="text" class="form-control" id="title" required maxlength="200">
+                        <div class="invalid-feedback">Please provide a title.</div>
+                    </div>
+
+                    <div class="mb-3">
+                        <label class="form-label" for="description">Description</label>
+                        <textarea class="form-control" id="description" rows="4" placeholder="Describe the event..."></textarea>
+                    </div>
+
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <label class="form-label" for="venue">Venue *</label>
+                            <input type="text" class="form-control" id="venue" required>
+                            <div class="invalid-feedback">Please provide a venue.</div>
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label" for="category">Category *</label>
+                            <select class="form-select" id="category" required>
+                                <option value="">Select category...</option>
+                                <option>Technology</option>
+                                <option>Cultural</option>
+                                <option>Sports</option>
+                                <option>Academic</option>
+                                <option>Workshop</option>
+                                <option>Seminar</option>
+                                <option>Other</option>
+                            </select>
+                            <div class="invalid-feedback">Please select a category.</div>
+                        </div>
+                    </div>
+
+                    <div class="row g-3 mt-1">
+                        <div class="col-md-4">
+                            <label class="form-label" for="date">Date *</label>
+                            <input type="date" class="form-control" id="date" required>
+                            <div class="invalid-feedback">Please pick a valid date.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="time">Time *</label>
+                            <input type="time" class="form-control" id="time" required>
+                            <div class="invalid-feedback">Please pick a valid time.</div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label" for="maxParticipants">Max Participants *</label>
+                            <input type="number" class="form-control" id="maxParticipants" required min="1" value="50">
+                            <div class="invalid-feedback">Must be at least 1.</div>
+                        </div>
+                    </div>
+
+                    <div class="mb-3 mt-3 status-field d-none">
+                        <label class="form-label" for="status">Status</label>
+                        <select class="form-select" id="status">
+                            <option value="upcoming">Upcoming</option>
+                            <option value="ongoing">Ongoing</option>
+                            <option value="completed">Completed</option>
+                            <option value="cancelled">Cancelled</option>
+                        </select>
+                    </div>
+
+                    <div class="d-flex gap-2 mt-4">
+                        <button type="submit" class="btn btn-brand flex-fill" id="submitBtn">
+                            <span class="btn-text">{% if mode == 'edit' %}Save Changes{% else %}Create Event{% endif %}</span>
+                            <span class="spinner-border spinner-border-sm d-none" id="submitSpinner"></span>
+                        </button>
+                        <a href="javascript:history.back()" class="btn btn-outline-secondary">Cancel</a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/event_form.js') }}"></script>
+{% endblock %}

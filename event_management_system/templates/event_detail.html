@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}Event Details - EventHub{% endblock %}
+
+{% block content %}
+<div class="container py-4" id="eventId" data-event-id="{{ event_id }}">
+    <div id="eventDetailContent">
+        <div class="spinner-wrap"><div class="spinner-border text-primary" role="status"></div></div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/event_detail.js') }}"></script>
+{% endblock %}

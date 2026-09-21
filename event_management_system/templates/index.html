@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+{% block title %}EventHub - Event Management System{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+    <div class="container text-center">
+        <h1 class="display-4 mb-3"><i class="bi bi-calendar2-week"></i> Discover &amp; Manage Events</h1>
+        <p class="lead mb-4 col-lg-8 mx-auto">
+            A complete platform for organizing and joining campus events &mdash; from tech symposiums
+            to cultural fests. Browse, register, and manage everything in one place.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+            <a href="{{ url_for('pages.events_page') }}" class="btn btn-light btn-lg px-4">
+                <i class="bi bi-search"></i> Browse Events
+            </a>
+            <a href="{{ url_for('pages.register_page') }}" class="btn btn-outline-light btn-lg px-4 nav-guest-only d-none">
+                Get Started
+            </a>
+        </div>
+    </div>
+</section>
+
+<div class="container my-5">
+    <div class="row g-4 text-center" id="homeStats">
+        <div class="col-6 col-md-3">
+            <div class="card stat-card p-3">
+                <i class="bi bi-calendar-event fs-2 text-primary"></i>
+                <h3 class="mt-2 mb-0" id="statEvents">&mdash;</h3>
+                <small class="text-muted">Events Listed</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card stat-card p-3">
+                <i class="bi bi-people fs-2 text-success"></i>
+                <h3 class="mt-2 mb-0" id="statStudents">&mdash;</h3>
+                <small class="text-muted">Students</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card stat-card p-3">
+                <i class="bi bi-person-badge fs-2 text-info"></i>
+                <h3 class="mt-2 mb-0" id="statOrganizers">&mdash;</h3>
+                <small class="text-muted">Organizers</small>
+            </div>
+        </div>
+        <div class="col-6 col-md-3">
+            <div class="card stat-card p-3">
+                <i class="bi bi-ticket-perforated fs-2 text-warning"></i>
+                <h3 class="mt-2 mb-0" id="statRegs">&mdash;</h3>
+                <small class="text-muted">Registrations</small>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container mb-5">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="mb-0">Upcoming Events</h3>
+        <a href="{{ url_for('pages.events_page') }}" class="btn btn-brand btn-sm">View All <i class="bi bi-arrow-right"></i></a>
+    </div>
+    <div id="featuredEvents" class="row g-4">
+        <div class="spinner-wrap w-100"><div class="spinner-border text-primary" role="status"></div></div>
+    </div>
+</div>
+
+<section class="bg-white py-5 border-top">
+    <div class="container">
+        <h3 class="text-center mb-4">Built For Everyone</h3>
+        <div class="row g-4">
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <i class="bi bi-mortarboard fs-1 text-success mb-2"></i>
+                    <h5>Students</h5>
+                    <p class="text-muted mb-0">Browse events, register instantly, and manage your registrations with ease.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <i class="bi bi-person-workspace fs-1 text-info mb-2"></i>
+                    <h5>Organizers</h5>
+                    <p class="text-muted mb-0">Create and manage your own events, and track who has registered.</p>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card h-100 p-4 border-0 shadow-sm">
+                    <i class="bi bi-shield-check fs-1 text-primary mb-2"></i>
+                    <h5>Admins</h5>
+                    <p class="text-muted mb-0">Oversee every event and registration across the entire platform.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/home.js') }}"></script>
+{% endblock %}

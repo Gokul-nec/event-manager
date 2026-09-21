@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}My Dashboard - EventHub{% endblock %}
+
+{% block content %}
+<div class="container py-4">
+    <div class="dashboard-header p-4 mb-4">
+        <h3 class="mb-1"><i class="bi bi-mortarboard"></i> Student Dashboard</h3>
+        <p class="mb-0 opacity-75">View and manage your event registrations.</p>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h5 class="mb-0">My Registrations</h5>
+        <a href="{{ url_for('pages.events_page') }}" class="btn btn-brand btn-sm"><i class="bi bi-search"></i> Browse Events</a>
+    </div>
+
+    <div class="table-responsive-card bg-white">
+        <table class="table table-hover align-middle mb-0">
+            <thead class="table-light">
+                <tr>
+                    <th>Event</th>
+                    <th>Date</th>
+                    <th>Venue</th>
+                    <th>Status</th>
+                    <th>Registered On</th>
+                    <th class="text-end">Action</th>
+                </tr>
+            </thead>
+            <tbody id="regTableBody">
+                <tr><td colspan="6" class="text-center py-4"><div class="spinner-border text-primary"></div></td></tr>
+            </tbody>
+        </table>
+    </div>
+    <nav class="mt-4" aria-label="Registrations pagination">
+        <ul class="pagination justify-content-center" id="pagination"></ul>
+    </nav>
+</div>
+{% endblock %}
+
+{% block extra_scripts %}
+<script src="{{ url_for('static', filename='js/dashboard_student.js') }}"></script>
+{% endblock %}
